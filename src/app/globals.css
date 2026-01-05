@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+}
+
+.progvision-grid {
+  background-image: radial-gradient(circle at 1px 1px, #1e293b 1px, transparent 0);
+  background-size: 60px 60px;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent;
+}
+
+::selection {
+  @apply bg-blue-500/20 text-blue-200;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
