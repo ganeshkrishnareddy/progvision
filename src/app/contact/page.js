@@ -4,33 +4,32 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Mail, Phone, MessageSquare, CheckCircle, Shield, Terminal, Globe } from 'lucide-react'
 import { siteData } from '@/data/siteData'
-import { db } from '@/lib/firebase'
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const ContactPage = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        organization: '',
-        topic: 'Website Development',
-        problem: '',
-        timeline: 'Immediate',
-        budget: 'Undisclosed'
-    })
     const [status, setStatus] = useState('idle')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setStatus('sending')
 
+        const form = e.target
+        const formData = new FormData(form)
+
         try {
-            await addDoc(collection(db, 'inquiries'), {
-                ...formData,
-                timestamp: serverTimestamp(),
-                recipient_emails: ['pganeshkrishnareddy@gmail.com', 'progvisionsite@gmail.com']
+            const response = await fetch('https://formspree.io/f/xojvdgbl', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             })
-            setStatus('success')
-            setFormData({ name: '', email: '', organization: '', topic: 'Website Development', problem: '', timeline: 'Immediate', budget: 'Undisclosed' })
+
+            if (response.ok) {
+                setStatus('success')
+                form.reset()
+            } else {
+                setStatus('error')
+            }
         } catch (error) {
             console.error("Error submitting inquiry:", error)
             setStatus('error')
@@ -132,10 +131,9 @@ const ContactPage = () => {
                                             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
                                             <input
                                                 required
+                                                name="name"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all"
                                                 placeholder="Name"
-                                                value={formData.name}
-                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                             />
                                         </div>
                                         <div className="space-y-3">
@@ -143,10 +141,9 @@ const ContactPage = () => {
                                             <input
                                                 required
                                                 type="email"
+                                                name="email"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all"
                                                 placeholder="email@company.com"
-                                                value={formData.email}
-                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -156,18 +153,17 @@ const ContactPage = () => {
                                             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Organization</label>
                                             <input
                                                 required
+                                                name="organization"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all"
                                                 placeholder="Company Name"
-                                                value={formData.organization}
-                                                onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                                             />
                                         </div>
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Service Required</label>
                                             <select
+                                                name="topic"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all appearance-none cursor-pointer"
-                                                value={formData.topic}
-                                                onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                                                defaultValue="Website Development"
                                             >
                                                 <option>Website Development</option>
                                                 <option>App Development</option>
@@ -181,11 +177,10 @@ const ContactPage = () => {
                                         <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Project Description</label>
                                         <textarea
                                             required
+                                            name="message"
                                             rows={5}
                                             className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all resize-none"
                                             placeholder="Tell us about your project..."
-                                            value={formData.problem}
-                                            onChange={(e) => setFormData({ ...formData, problem: e.target.value })}
                                         />
                                     </div>
 
@@ -193,9 +188,9 @@ const ContactPage = () => {
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Expected Timeline</label>
                                             <select
+                                                name="timeline"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all appearance-none"
-                                                value={formData.timeline}
-                                                onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                                                defaultValue="Immediate"
                                             >
                                                 <option>Immediate</option>
                                                 <option>1-3 Months</option>
@@ -206,9 +201,9 @@ const ContactPage = () => {
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Budget Range (Optional)</label>
                                             <select
+                                                name="budget"
                                                 className="w-full bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm focus:border-blue-500 outline-none transition-all appearance-none"
-                                                value={formData.budget}
-                                                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                                                defaultValue="Undisclosed"
                                             >
                                                 <option>Undisclosed</option>
                                                 <option>$5k - $15k</option>
@@ -237,4 +232,3 @@ const ContactPage = () => {
 
 
 export default ContactPage
-
