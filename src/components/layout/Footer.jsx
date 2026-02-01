@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { navLinks, siteData } from '@/data/siteData'
-import { Terminal, Mail, Phone, MapPin, Linkedin, Github, MessageSquare, Twitter } from 'lucide-react'
+import { Terminal, Mail, Phone, MapPin, Linkedin, Github, MessageSquare, Twitter, BadgeCheck } from 'lucide-react'
 
 const Footer = () => {
     return (
@@ -85,7 +85,21 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* MSME Registration Badge */}
+            <div className="max-w-7xl mx-auto mt-16 mb-8">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-500/20">
+                    <div className="flex items-center gap-2">
+                        <BadgeCheck size={20} className="text-green-500" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-green-500">MSME Registered Enterprise</span>
+                    </div>
+                    <div className="h-4 w-[1px] bg-white/20 hidden sm:block" />
+                    <span className="text-[11px] font-mono text-slate-400">UDYAM-AP-23-0076992</span>
+                    <div className="h-4 w-[1px] bg-white/20 hidden sm:block" />
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">Ministry of MSME, Govt. of India</span>
+                </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p className="text-slate-500 text-[10px] font-mono uppercase tracking-widest">
                     © {new Date().getFullYear()} PROGVISION DIGITAL. ALL RIGHTS RESERVED.
                 </p>

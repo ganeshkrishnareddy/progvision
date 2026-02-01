@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Shield, Terminal, Zap, Globe, Cpu, User, Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
+import { Award, Shield, Terminal, Zap, Globe, Cpu, User, Github, Linkedin, Mail, ExternalLink, BadgeCheck, Building2, Calendar } from 'lucide-react'
 import Image from 'next/image'
 
 const AboutPage = () => {
@@ -23,6 +23,61 @@ const AboutPage = () => {
                     <p className="text-xl md:text-2xl text-slate-400 leading-relaxed font-light">
                         At ProgVision, we don't just build software; we architect the digital future of our partners. Founded on the principles of technical integrity and collaborative success, we bridge the gap between complex visionary ideas and secure, production-ready reality.
                     </p>
+                </motion.div>
+            </div>
+
+            {/* MSME Registration Section */}
+            <div className="px-6 max-w-7xl mx-auto py-16">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-8 md:p-12 rounded-[2rem] bg-gradient-to-br from-green-500/10 via-blue-500/5 to-transparent border border-green-500/20 relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+                    <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center justify-center">
+                                        <BadgeCheck size={24} className="text-green-500" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-green-500">Government Registered</p>
+                                        <h3 className="text-2xl font-bold tracking-tight">MSME Certified Enterprise</h3>
+                                    </div>
+                                </div>
+                                <p className="text-slate-400 text-lg leading-relaxed font-light max-w-2xl">
+                                    ProgVision is officially registered under the Ministry of Micro, Small and Medium Enterprises, Government of India. This certification validates our commitment to quality, reliability, and professional service delivery.
+                                </p>
+                            </div>
+
+                            <div className="shrink-0 p-6 rounded-2xl bg-black/40 border border-white/10 space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <Building2 size={16} className="text-blue-500" />
+                                    <div>
+                                        <p className="text-[9px] text-slate-500 uppercase tracking-widest">Enterprise Type</p>
+                                        <p className="text-sm font-bold text-white">Micro Enterprise</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <BadgeCheck size={16} className="text-blue-500" />
+                                    <div>
+                                        <p className="text-[9px] text-slate-500 uppercase tracking-widest">UDYAM Number</p>
+                                        <p className="text-sm font-mono font-bold text-green-400">UDYAM-AP-23-0076992</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Calendar size={16} className="text-blue-500" />
+                                    <div>
+                                        <p className="text-[9px] text-slate-500 uppercase tracking-widest">Registered Since</p>
+                                        <p className="text-sm font-bold text-white">February 2022</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
 

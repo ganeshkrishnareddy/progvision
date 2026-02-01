@@ -65,6 +65,50 @@ export const servicesData = [
 
 export const workEngagements = [
     {
+        slug: "biograph",
+        client: "BioGraph",
+        region: "Global",
+        url: "https://biographbrand.web.app/",
+        service: "Brand E-commerce",
+        type: "Ongoing",
+        description: "A minimal, text-led menswear brand platform focusing on editorial aesthetics, neutral tones, and strong typography hierarchy.",
+        impact: "Establishing a distinct digital identity for a premium menswear label.",
+        technologies: ["React", "Firebase", "CSS Modules", "Vite"],
+        stages: ["Brand Identity Translation", "UI/UX Design", "Frontend Implementation", "Content Strategy"],
+        deliverables: [
+            "Editorial-style product pages",
+            "Minimalist aesthetic interface",
+            "Responsive brand platform"
+        ],
+        capabilities: [
+            "Digital Branding",
+            "E-commerce UI",
+            "Visual Storytelling"
+        ]
+    },
+    {
+        slug: "ak-hot-chips",
+        client: "A K Hot Chips",
+        region: "India",
+        url: "https://akhotchips.shop/",
+        service: "E-commerce Platform",
+        type: "Completed",
+        description: "A comprehensive e-commerce solution for a traditional snack brand, featuring detailed product showcases and seamless ordering.",
+        impact: "Expanded reach from local store to online direct-to-consumer sales.",
+        technologies: ["React", "Node.js", "Payment Gateway Integration", "Cloud Hosting"],
+        stages: ["Market Analysis", "Platform Design", "Payment Integration", "Launch"],
+        deliverables: [
+            "Full-featured e-commerce site",
+            "Product catalog management",
+            "Secure checkout process"
+        ],
+        capabilities: [
+            "E-commerce Development",
+            "Payment Solutions",
+            "Product Presentation"
+        ]
+    },
+    {
         slug: "zenith-cloud",
         client: "Zenith Cloud Solutions",
         region: "USA",

@@ -5,6 +5,7 @@ import { ArrowRight, Terminal, Globe, Shield, Smartphone, Monitor } from 'lucide
 import Link from 'next/link'
 import DigitalCore from '@/components/hero/DigitalCore'
 import Partners from '@/components/sections/Partners'
+import FeaturedWork from '@/components/sections/FeaturedWork'
 import { servicesData } from '@/data/siteData'
 
 const Hero = () => {
@@ -76,6 +77,8 @@ export default function Home() {
       <Hero />
 
       <Partners />
+
+      <FeaturedWork />
 
       <section className="py-16 md:py-32 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20 gap-8">
