@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Globe, CheckCircle, ExternalLink, Zap, Shield, Target, Terminal } from 'lucide-react'
+import { ArrowRight, Globe, CheckCircle, ExternalLink, Zap, Shield, Target, Terminal, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { workEngagements } from '@/data/siteData'
 
@@ -22,8 +22,12 @@ const EngagementCard = ({ work, index }) => (
                 <div className="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-500 shadow-2xl shadow-blue-500/10">
                     <Globe size={24} />
                 </div>
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/20 bg-green-500/5 text-green-400 text-[10px] font-bold uppercase tracking-widest">
-                    <CheckCircle size={10} /> Completed
+                <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full border text-[10px] font-bold uppercase tracking-widest ${work.type === 'Ongoing'
+                    ? 'border-yellow-500/20 bg-yellow-500/5 text-yellow-400'
+                    : 'border-green-500/20 bg-green-500/5 text-green-400'
+                    }`}>
+                    {work.type === 'Ongoing' ? <Loader2 size={10} className="animate-spin" /> : <CheckCircle size={10} />}
+                    {work.type || 'Completed'}
                 </div>
             </div>
 
@@ -45,9 +49,34 @@ const EngagementCard = ({ work, index }) => (
             </div>
         </div>
 
-        <Link href={`/work/${work.slug}`} className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-[0.2em] text-[10px] py-2 border-b-2 border-blue-600 group-hover:border-white transition-all w-fit">
-            Review Engagement <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-        </Link>
+        <div className="flex flex-col gap-6 mt-auto pt-6 border-t border-white/5">
+            <div className="flex items-center justify-between gap-4">
+                <Link href={`/work/${work.slug}`} className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-[0.2em] text-[10px] py-1 border-b-2 border-blue-600 group-hover:border-white transition-all w-fit shrink-0">
+                    Review Engagement <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                {work.url && work.url !== "#" && (
+                    <a 
+                        href={work.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 text-blue-500 hover:text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-all shrink-0"
+                    >
+                        Visit Live Site <ExternalLink size={14} />
+                    </a>
+                )}
+            </div>
+
+            {work.invoices && work.invoices.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                    {work.invoices.map((inv, idx) => (
+                        <a key={idx} href={`/invoices/${inv}`} download className="px-3 py-1 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 rounded-full text-[9px] text-blue-400 font-bold uppercase tracking-widest transition-colors" title={`Download Invoice ${idx + 1}`}>
+                            Inv {idx + 1}
+                        </a>
+                    ))}
+                </div>
+            )}
+        </div>
     </motion.div>
 )
 

@@ -1,8 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Shield, Terminal, Zap, Globe, Cpu, User, Github, Linkedin, Mail, ExternalLink, BadgeCheck, Building2, Calendar } from 'lucide-react'
+import { Award, Shield, Terminal, Zap, Globe, Cpu, User, Github, Linkedin, Mail, ExternalLink, BadgeCheck, Building2, Calendar, ArrowUpRight, GraduationCap, Workflow, Sparkles, FileText } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const AboutPage = () => {
     return (
@@ -61,13 +62,7 @@ const AboutPage = () => {
                                         <p className="text-sm font-bold text-white">Micro Enterprise</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <BadgeCheck size={16} className="text-blue-500" />
-                                    <div>
-                                        <p className="text-[9px] text-slate-500 uppercase tracking-widest">UDYAM Number</p>
-                                        <p className="text-sm font-mono font-bold text-green-400">UDYAM-AP-23-0076992</p>
-                                    </div>
-                                </div>
+
                                 <div className="flex items-center gap-3">
                                     <Calendar size={16} className="text-blue-500" />
                                     <div>
@@ -227,6 +222,165 @@ const AboutPage = () => {
                             </div>
                         </div>
                     </motion.div>
+                </div>
+            </div>
+
+            {/* Technical Team Section */}
+            <div className="py-32 px-6 max-w-7xl mx-auto">
+                <div className="mb-20 text-center">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-6 italic">Technical <span className="text-blue-500 font-normal underline decoration-white/10">Team.</span></h2>
+                    <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">
+                        Driving innovation through specialized expertise in client management, data intelligence, and emerging technologies.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    {[
+                        {
+                            name: "Pavan Adireddy",
+                            role: "Associate & Client Manager",
+                            photo: "/images/pavan-adireddy.jpeg",
+                            description: "Strategic lead for client acquisition and operational testing. Pavan ensures our engineering solutions align perfectly with client business goals through rigorous quality assurance and relationship management.",
+                            focus: ["Client Success", "System Testing", "Growth Strategy"],
+                            linkedin: "https://www.linkedin.com/in/adireddypavan/"
+                        },
+                        {
+                            name: "Venkat Veerendra Cheepuri",
+                            role: "AI Integration Specialist",
+                            photo: "/images/venkat-cheepuri.jpeg",
+                            description: "Focused on bridging the gap between core engineering and artificial intelligence. Venkat leads our research into AI tools and specializes in integrating conversational interfaces into complex systems.",
+                            focus: ["AI Research", "Chatbot Integration", "Automated Workflows"],
+                            linkedin: "https://www.linkedin.com/in/venkatveerendracheepuri/"
+                        },
+                        {
+                            name: "Daulat Singh",
+                            role: "AI Accelerator",
+                            photo: "/images/daulat-singh.jpeg",
+                            description: "Data Analyst and AI practitioner focused on turning product ideas into running applications. Daulat uses modern AI tools to accelerate how concepts become working products, backed by clear data-driven insight.",
+                            focus: ["Data Analytics", "Data Visualization", "AI-Powered Apps"],
+                            linkedin: "https://www.linkedin.com/in/daulat-singh-9a76791b1/"
+                        }
+                    ].map((member, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.2 }}
+                            className="p-8 md:p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 hover:border-blue-500/20 transition-all group flex flex-col items-center text-center"
+                        >
+                            <div className="relative w-32 h-32 mb-8 rounded-2xl overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 group-hover:bg-blue-600/10 group-hover:text-blue-500 transition-all duration-500 shadow-xl shadow-black/50">
+                                {member.photo ? (
+                                    <Image
+                                        src={member.photo}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                    />
+                                ) : (
+                                    <User size={48} strokeWidth={1.5} />
+                                )}
+                            </div>
+                            
+                            <div className="mb-6">
+                                <h3 className="text-2xl font-bold tracking-tight text-white mb-2">{member.name}</h3>
+                                <p className="text-blue-500 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">{member.role}</p>
+                            </div>
+
+                            <p className="text-slate-400 text-sm leading-relaxed mb-8 max-w-md font-light">
+                                {member.description}
+                            </p>
+
+                            <div className="flex flex-wrap justify-center gap-2 mb-10">
+                                {member.focus.map(tag => (
+                                    <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] text-slate-500 font-bold uppercase tracking-widest">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <a 
+                                href={member.linkedin} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="mt-auto flex items-center gap-2 text-slate-500 hover:text-blue-500 transition-colors font-mono text-[10px] uppercase tracking-widest"
+                            >
+                                <Linkedin size={14} /> View Professional Profile <ExternalLink size={12} />
+                            </a>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Product Portfolio Section */}
+            <div className="bg-white/[0.02] border-t border-white/5 py-32 px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                        <div className="max-w-2xl">
+                            <h2 className="text-4xl md:text-6xl font-bold mb-6 italic tracking-tighter">Beyond the Team. <span className="text-blue-500 font-normal">Our Products.</span></h2>
+                            <p className="text-xl text-slate-400 font-light leading-relaxed">
+                                The same engineering team also builds and operates our own products — from student careers to automation and AI tooling.
+                            </p>
+                        </div>
+                        <Link href="/products" className="text-blue-500 font-bold uppercase tracking-widest text-[10px] border-b-2 border-blue-600 pb-1 hover:text-white hover:border-white transition-colors shrink-0">
+                            All Products
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                name: "PixoPDF",
+                                tagline: "Privacy-First PDF Tools",
+                                description: "Merge, split, compress, edit, sign and convert PDFs in-browser — no uploads, no signup.",
+                                url: "https://pixopdf.online/",
+                                icon: FileText
+                            },
+                            {
+                                name: "LaunchWise",
+                                tagline: "Student Careers & Perks Platform",
+                                description: "Verified jobs, internships, student discounts, AI tools & cloud credits for 50,000+ students.",
+                                url: "https://launchwise.tech/",
+                                icon: GraduationCap
+                            },
+                            {
+                                name: "FlowMatch",
+                                tagline: "Workflow Discovery Engine",
+                                description: "Searches 5,000+ n8n workflows to find the perfect automation template for your tools.",
+                                url: "https://flowmatch.tech/",
+                                icon: Workflow
+                            },
+                            {
+                                name: "InstaDemoX",
+                                tagline: "AI Website Builder",
+                                description: "Tell it your business name and get a complete, personalized website instantly with AI.",
+                                url: "https://instademox.space/",
+                                icon: Sparkles
+                            }
+                        ].map((product, i) => (
+                            <motion.a
+                                key={product.name}
+                                href={product.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.15 }}
+                                className="group p-8 rounded-[2rem] bg-black/40 border border-white/5 hover:border-blue-500/30 transition-all flex flex-col"
+                            >
+                                <div className="flex justify-between items-start mb-8">
+                                    <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-500">
+                                        <product.icon size={22} />
+                                    </div>
+                                    <ArrowUpRight size={18} className="text-slate-600 group-hover:text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                                </div>
+                                <h3 className="text-2xl font-bold tracking-tight mb-2 group-hover:text-blue-500 transition-colors">{product.name}</h3>
+                                <p className="text-blue-500 text-[10px] font-bold uppercase tracking-widest mb-4">{product.tagline}</p>
+                                <p className="text-slate-400 text-sm leading-relaxed">{product.description}</p>
+                            </motion.a>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

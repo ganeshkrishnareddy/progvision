@@ -1,12 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Terminal, Globe, Shield, Smartphone, Monitor } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Terminal, Globe, Shield, Smartphone, Monitor } from 'lucide-react'
 import Link from 'next/link'
 import DigitalCore from '@/components/hero/DigitalCore'
 import Partners from '@/components/sections/Partners'
 import FeaturedWork from '@/components/sections/FeaturedWork'
-import { servicesData } from '@/data/siteData'
+import { servicesData, productsData } from '@/data/siteData'
 
 const Hero = () => {
   return (
@@ -79,6 +79,38 @@ export default function Home() {
       <Partners />
 
       <FeaturedWork />
+
+      <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter italic">Our <span className="text-blue-500">Products.</span></h2>
+            <p className="text-slate-400 max-w-xl">
+              Workflow automation and AI tools built by ProgVision - plus the custom automation we develop for your business.
+            </p>
+          </div>
+          <Link href="/products" className="text-blue-500 font-bold uppercase tracking-widest text-[10px] border-b-2 border-blue-600 pb-1">
+            All Products
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {productsData.map(p => (
+            <Link
+              key={p.slug}
+              href={p.url}
+              {...(p.url.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+              className="group p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-blue-500/30 transition-all flex flex-col"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="text-2xl font-bold tracking-tight">{p.name}</h3>
+                <ArrowUpRight size={18} className="text-blue-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+              </div>
+              <p className="text-blue-500 text-[10px] font-bold uppercase tracking-widest mb-3">{p.tagline}</p>
+              <p className="text-slate-400 text-sm leading-relaxed">{p.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className="py-16 md:py-32 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20 gap-8">

@@ -58,10 +58,22 @@ const Footer = () => {
                 <div className="lg:col-span-2 space-y-8">
                     <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">Services</h4>
                     <ul className="space-y-4">
-                        <li className="text-sm text-slate-400">Web Development</li>
-                        <li className="text-sm text-slate-400">App Development</li>
-                        <li className="text-sm text-slate-400">iOS Development</li>
-                        <li className="text-sm text-slate-400">Security Audit</li>
+                        {[
+                            { name: "Web Development", path: "/services/website-development" },
+                            { name: "App Development", path: "/services/app-development" },
+                            { name: "iOS Development", path: "/services/ios-development" },
+                            { name: "Security Audit", path: "/services/web-security-audit" },
+                            { name: "Automation", path: "/products" }
+                        ].map((service) => (
+                            <li key={service.name}>
+                                <Link
+                                    href={service.path}
+                                    className="text-sm text-slate-400 hover:text-blue-500 transition-all font-medium"
+                                >
+                                    {service.name}
+                                </Link>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
@@ -71,11 +83,11 @@ const Footer = () => {
                     <div className="space-y-6">
                         <div className="flex gap-4 items-center">
                             <Mail size={18} className="text-blue-500" />
-                            <span className="text-sm text-slate-300">{siteData.email}</span>
+                            <a href={`mailto:${siteData.email}`} className="text-sm text-slate-300 hover:text-blue-500 transition-colors">{siteData.email}</a>
                         </div>
                         <div className="flex gap-4 items-center">
                             <Phone size={18} className="text-blue-500" />
-                            <span className="text-sm text-slate-300">{siteData.phones[0]}</span>
+                            <a href={`tel:${siteData.phones[0].replace(/\s+/g, "")}`} className="text-sm text-slate-300 hover:text-blue-500 transition-colors">{siteData.phones[0]}</a>
                         </div>
                         <div className="flex gap-4 items-center">
                             <MapPin size={18} className="text-blue-500" />
@@ -92,8 +104,6 @@ const Footer = () => {
                         <BadgeCheck size={20} className="text-green-500" />
                         <span className="text-[10px] font-bold uppercase tracking-widest text-green-500">MSME Registered Enterprise</span>
                     </div>
-                    <div className="h-4 w-[1px] bg-white/20 hidden sm:block" />
-                    <span className="text-[11px] font-mono text-slate-400">UDYAM-AP-23-0076992</span>
                     <div className="h-4 w-[1px] bg-white/20 hidden sm:block" />
                     <span className="text-[10px] text-slate-500 uppercase tracking-wider">Ministry of MSME, Govt. of India</span>
                 </div>

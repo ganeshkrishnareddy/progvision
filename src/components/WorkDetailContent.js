@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, Globe, CheckCircle, Smartphone, Shield, Monitor, Zap, Target, Cpu, Layers } from 'lucide-react'
+import { ArrowLeft, Globe, CheckCircle, Smartphone, Shield, Monitor, Zap, Target, Cpu, Layers, Download } from 'lucide-react'
 import Link from 'next/link'
 
 const WorkDetailContent = ({ work }) => {
@@ -119,6 +119,19 @@ const WorkDetailContent = ({ work }) => {
                                         <span>Region</span>
                                         <span className="text-white font-bold">{work.region}</span>
                                     </div>
+                                    {work.invoices && work.invoices.length > 0 && (
+                                        <div className="py-4 mt-2 border-b border-white/5 space-y-3">
+                                            <span className="font-mono text-[9px] uppercase tracking-widest text-slate-500 inline-block mb-1">Invoices</span>
+                                            <div className="flex flex-col gap-2">
+                                                {work.invoices.map((inv, idx) => (
+                                                    <a key={idx} href={`/invoices/${inv}`} download className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-blue-500/10 border border-white/5 hover:border-blue-500/20 transition-all group">
+                                                        <span className="text-[10px] font-mono text-slate-300 group-hover:text-blue-400 font-bold uppercase tracking-widest">Invoice #{idx + 1}</span>
+                                                        <Download size={14} className="text-slate-500 group-hover:text-blue-400 transition-colors" />
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <Link href="/contact" className="block">

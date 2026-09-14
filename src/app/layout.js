@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Chatbot from '@/components/Chatbot'
+import { AuthProvider } from '@/context/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,17 +26,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.className}`}>
+    <html lang="en" className={`scroll-smooth ${inter.className}`} suppressHydrationWarning>
       <body className="bg-black text-white min-h-screen relative selection:bg-blue-500/30">
-        {/* Global Grid Background - Extremely Subtle */}
-        <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none progvision-grid" />
+        <AuthProvider>
+          {/* Global Grid Background - Extremely Subtle */}
+          <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none progvision-grid" />
 
-        <Navbar />
-        <main className="relative z-10">
-          {children}
-        </main>
-        <Footer />
-        <Chatbot />
+          <Navbar />
+          <main className="relative z-10">
+            {children}
+          </main>
+          <Footer />
+          <Chatbot />
+        </AuthProvider>
       </body>
     </html>
   )

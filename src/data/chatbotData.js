@@ -7,7 +7,7 @@ export const companyInfo = {
     description: "ProgVision is a software engineering company that builds and secures high-performance websites and applications. We partner with businesses and startups worldwide to deliver production-ready digital products.",
     founded: "2024",
     headquarters: "India",
-    email: "progvisionsite@gmail.com",
+    email: "support@progvision.online",
     phone: "+91 7814201332",
     whatsapp: "+91 8374622779",
     website: "https://progvision.in",
@@ -61,6 +61,33 @@ export const services = [
         technologies: ["Burp Suite", "OWASP ZAP", "Static Analysis Tools", "Custom Scripts"],
         timeline: "1-2 weeks",
         startingPrice: "$500 - $3,000 depending on scope"
+    }
+]
+
+export const products = [
+    {
+        name: "PixoPDF",
+        url: "https://pixopdf.online/",
+        tagline: "Privacy-First Online PDF Tools",
+        description: "34 free PDF tools that process files entirely in your browser. Merge, split, compress, edit, sign and convert PDFs with zero uploads, no signup, and no watermarks."
+    },
+    {
+        name: "LaunchWise",
+        url: "https://launchwise.tech/",
+        tagline: "Student Careers & Perks Platform",
+        description: "Everything students need to launch their career: verified jobs, internships, exclusive student discounts, AI tools, and cloud credits - all in one trusted platform used by 50,000+ students."
+    },
+    {
+        name: "FlowMatch",
+        url: "https://flowmatch.tech/",
+        tagline: "Workflow Discovery & Matching Engine",
+        description: "Describe what you want to automate and FlowMatch searches 5,000+ n8n workflows to find the closest template for your tools and process."
+    },
+    {
+        name: "InstaDemoX",
+        url: "https://instademox.space/",
+        tagline: "Next-Gen AI Website Builder",
+        description: "Tell InstaDemoX your business name and it generates a complete, personalized website instantly with AI."
     }
 ]
 
@@ -181,6 +208,26 @@ export const intents = [
         response: "timeline"
     },
     {
+        patterns: ["pixopdf", "pixo pdf", "pdf tool", "pdf editor", "merge pdf", "split pdf", "compress pdf", "sign pdf"],
+        response: "product_pixopdf"
+    },
+    {
+        patterns: ["launchwise", "launch wise", "student platform", "student perks", "student discounts", "student jobs", "student internship"],
+        response: "product_launchwise"
+    },
+    {
+        patterns: ["flowmatch", "flow match", "n8n", "workflow template"],
+        response: "product_flowmatch"
+    },
+    {
+        patterns: ["instademox", "insta demox", "ai website builder", "website generator"],
+        response: "product_instademox"
+    },
+    {
+        patterns: ["product", "your tools", "saas", "built by progvision", "what have you built"],
+        response: "products"
+    },
+    {
         patterns: ["technology", "tech stack", "tools", "framework", "react", "nextjs", "node"],
         response: "technologies"
     },
@@ -206,9 +253,9 @@ export const intents = [
 export const responses = {
     greeting: "Hello! 👋 Welcome to ProgVision. I'm here to help you learn about our services, pricing, team, and more. What would you like to know?",
 
-    farewell: "Thank you for chatting with us! Feel free to reach out anytime at progvisionsite@gmail.com or +91 7814201332. Have a great day! 👋",
+    farewell: "Thank you for chatting with us! Feel free to reach out anytime at support@progvision.online or +91 7814201332. Have a great day! 👋",
 
-    help: "I can help you with:\n• Information about ProgVision\n• Our services (Web, App, iOS, Security)\n• Pricing and timelines\n• Contact information\n• Our team and founder\n• Previous clients and portfolio\n\nJust ask your question!",
+    help: "I can help you with:\n• Information about ProgVision\n• Our services (Web, App, iOS, Security)\n• Our products (PixoPDF, LaunchWise, FlowMatch, InstaDemoX)\n• Pricing and timelines\n• Contact information\n• Our team and founder\n• Previous clients and portfolio\n\nJust ask your question!",
 
     about_company: `${companyInfo.name} is a software engineering company that builds and secures high-performance websites and applications.\n\n🎯 Our mission: Engineering elite digital products with a security-first mindset.\n\n🌍 We serve clients globally in USA, Europe, Asia, Japan, Australia, and more.`,
 
@@ -221,6 +268,16 @@ export const responses = {
     founder: `👨‍💻 P. Ganesh Krishna Reddy\nFounder & Technical Lead\n\n🎓 Certifications:\n• CompTIA Security+, Network+, PenTest+, CySA+\n• QuickHeal Digital Forensic Investigator\n• Reliance Foundation Scholar\n\n🔗 LinkedIn: linkedin.com/in/pganeshkrishnareddy`,
 
     clients: "🏢 Our clients include:\n\n🇺🇸 Zenith Cloud Solutions (USA)\n🇺🇸 Dallas Venture Capital (USA)\n🇨🇦 AltCode Technologies (Canada)\n🇪🇺 NexaTech (Europe)\n🇦🇺 PixelMorph (Australia)\n🇯🇵 Sakura Web Services (Japan)\n\nVisit progvision.in/work for our full portfolio!",
+
+    products: "🚀 Products built by ProgVision:\n\n📄 PixoPDF - Privacy-first PDF tools (pixopdf.online)\n🎓 LaunchWise - Student careers & perks platform (launchwise.tech)\n⚙️ FlowMatch - n8n workflow discovery engine (flowmatch.tech)\n✨ InstaDemoX - AI website builder (instademox.space)\n\nAsk me about any of them, or visit progvision.in/products!",
+
+    product_pixopdf: "📄 PixoPDF - Privacy-First Online PDF Tools\n\nYour files never leave your device:\n• 34 free PDF tools in one place\n• 100% browser processing - zero uploads\n• No signup, no watermarks\n• Merge, split, compress, edit, sign & convert\n\n👉 Try it: pixopdf.online",
+
+    product_launchwise: "🎓 LaunchWise - Student Careers & Perks Platform\n\nEverything students need to launch their career:\n• Verified jobs & internships board\n• 1,500+ verified student offers across 250+ brands\n• AI tools, cloud credits & learning resources\n• Trusted by 50,000+ students globally\n\n👉 Try it: launchwise.tech",
+
+    product_flowmatch: "⚙️ FlowMatch - Workflow Discovery Engine\n\nFind your perfect automation workflow:\n• 5,000+ n8n workflow library\n• Tool & process matching\n• Instant template discovery\n\n👉 Try it: flowmatch.tech",
+
+    product_instademox: "✨ InstaDemoX - AI Website Builder\n\nWe already designed your website:\n• AI-generated websites in seconds\n• Just tell it your business name\n• Editable live previews\n\n👉 Try it: instademox.space",
 
     service_website: "🌐 Website Development\n\nWe build fast, scalable, conversion-focused websites:\n• Business & Company Websites\n• Startup Landing Pages\n• SEO-optimized Architecture\n\n⏱️ Timeline: 2-4 weeks\n💰 Starting from: $500\n\nTech: React, Next.js, Tailwind CSS, Node.js\n\n👉 View details: progvision.in/services/website-development",
 
@@ -236,7 +293,7 @@ export const responses = {
 
     regions: "🌍 We serve clients globally:\n\n🇺🇸 USA\n🇨🇦 Canada\n🇪🇺 Europe\n🇦🇺 Australia\n🇯🇵 Japan\n🇮🇳 India\n🌏 Asia\n\nTime zone differences? No problem - we're flexible with scheduling!",
 
-    fallback: "I'm not sure I understood that. I can help you with:\n• ProgVision company info\n• Our services & pricing\n• Contact details\n• Our team & founder\n• Previous clients\n\nTry asking: 'What services do you offer?' or 'How can I contact you?'"
+    fallback: "I'm not sure I understood that. I can help you with:\n• ProgVision company info\n• Our services & pricing\n• Our products (PixoPDF, LaunchWise, FlowMatch, InstaDemoX)\n• Contact details\n• Our team & founder\n• Previous clients\n\nTry asking: 'What services do you offer?' or 'Tell me about PixoPDF?'"
 }
 
 // Service links for clickable navigation
@@ -250,10 +307,11 @@ export const serviceLinks = {
 // Quick suggestion chips for the chat UI
 export const quickSuggestions = [
     "What services do you offer?",
+    "What products have you built?",
+    "Tell me about PixoPDF",
+    "Tell me about LaunchWise",
     "Pricing information",
-    "Contact details",
-    "Who is the founder?",
-    "Your previous clients"
+    "Contact details"
 ]
 
 // WhatsApp quick start data
